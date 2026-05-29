@@ -78,6 +78,8 @@ The Gateway intercepts every request and:
 Uses the **Token Bucket** algorithm via Redis:
 -   **User Service**: 10 req/s (Replenish Rate), 20 (Burst Capacity).
 -   **Candidate Service**: 5 req/s (Replenish Rate), 10 (Burst Capacity).
+-   **Voting Service**: 5 req/s (Replenish Rate), 10 (Burst Capacity).
+-   **Result Service**: 20 req/s (Replenish Rate), 40 (Burst Capacity). *(Higher limit — public, read-heavy)*
 
 ---
 
@@ -132,6 +134,8 @@ api-gateway/
 | 2.3 | API Gateway Setup | ✅ Done |
 | 2.4 | JWT Validation Filter | ✅ Done |
 | 2.5 | Rate Limiting | ✅ Done |
+| 5.0 | Voting Service Route | ✅ Done |
+| 5.1 | Result Service Route (public, no auth) | ✅ Done |
 
 ---
 
@@ -142,4 +146,4 @@ This project is licensed under the MIT License.
 ---
 
 > **Maintainer:** Vaibhav Jain  
-> **Last Updated:** May 11, 2026
+> **Last Updated:** May 29, 2026

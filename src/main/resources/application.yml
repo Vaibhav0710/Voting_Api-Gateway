@@ -36,6 +36,29 @@ spring:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 10
                 key-resolver: "#{@userKeyResolver}"
+        
+        - id: voting-service
+          uri: lb://voting-service
+          predicates:
+            - Path=/api/v1/votes/**
+          filters:
+            - AuthenticationFilter
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@userKeyResolver}"
+        
+        - id: result-service
+          uri: lb://result-service
+          predicates:
+            - Path=/api/v1/results/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 40
+                key-resolver: "#{@userKeyResolver}"
 
 eureka:
   client:
