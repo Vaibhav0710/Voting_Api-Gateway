@@ -16,4 +16,13 @@ public class ApiResponse<T> {
     private String message;
     private T data;
     private LocalDateTime timestamp;
+
+    /** Error envelope produced by the gateway itself (401, 403, 503 fallbacks). */
+    public static <T> ApiResponse<T> error(String message) {
+        return ApiResponse.<T>builder()
+                .success(false)
+                .message(message)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
 }
