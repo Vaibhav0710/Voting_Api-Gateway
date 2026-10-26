@@ -38,8 +38,8 @@ spring:
             - AuthenticationFilter
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 10
-                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.replenishRate: ${GATEWAY_AUTH_REPLENISH_RATE:10}
+                redis-rate-limiter.burstCapacity: ${GATEWAY_AUTH_BURST_CAPACITY:20}
                 key-resolver: "#{@userKeyResolver}"
             - name: CircuitBreaker
               args:
